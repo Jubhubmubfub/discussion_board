@@ -1,0 +1,10 @@
+<a href="/#!/dashboard">Dasboard</a> <a href="/#!/welcome">Logout</a><br>
+
+<h1>Username: <span>{{user.name}}</span></h1>
+
+<h2>Posted...</h2>
+<ul>
+  <li ng-bind='user.topics.length + " Topic(s)"'></li>
+  <li ng-bind='user.posts.length + " Post(s)"'></li>
+  <li ng-bind='user.comments.length + " Comment(s)"'></li>
+</ul>

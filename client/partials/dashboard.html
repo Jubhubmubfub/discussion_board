@@ -1,0 +1,31 @@
+<h1>Welcome <span ng-bind='userSession.name'></span>!</h1>
+<input type="text" ng-model='search' placeholder="search">
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Topic</th>
+      <th>User Name</th>
+      <th>Posts</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat='topic in topics | filter:search'>
+    <tr>
+      <td>{{topic.category}}</td>
+      <td><a href='/#!/topic/{{topic._id}}'>{{topic.title}}</a></td>
+      <td><a href='/#!/user/{{topic.user._id}}'>{{topic.user.name}}</a></td>
+      <td>{{topic.posts.length}}</td>
+    </tr>
+  </tbody>
+</table>
+<div ng-repeat='error in errors'>
+  <p ng-bind='error.message'></p>
+</div>
+<h1>Add a new Topic</h1>
+<form name='form' ng-submit='DC.create()'>
+  Topic:<br> <input type="text" ng-model='topic.title' required><br>
+  Description:<br> <textarea  rows="8" cols="80" ng-model='topic.description' required></textarea><br>
+  Category: <select ng-options='category for category in categories' ng-model='topic.category' required></select><br>
+  <input type="submit" value="Submit" ng-disabled='form.$invalid'>
+</form>

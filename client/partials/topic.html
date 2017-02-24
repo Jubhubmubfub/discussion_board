@@ -1,0 +1,20 @@
+<a href='/#!/dashboard/'>Dashboard</a> <a href='/#!/'>Logout</a>
+<h3><a href='/#!/user/{{topic.user._id}}'><span ng-bind='topic.user.name'></span></a> posted a topic:</h3>
+<h4>{{topic.title}}</h4>
+<p>Description: {{topic.description}}</p>
+<h4>Post your answer here...</h4>
+<form ng-submit='TC.create()'>
+  <textarea style='margin-left:20px;'rows="4" cols="80" ng-model='post.text'></textarea>
+  <input type="submit" value="Post">
+</form>
+<div ng-repeat='post in topic.posts track by $index'>
+  <hr>
+  <p style='margin-left:20px;'><a href='/#!/user/{{post.user._id}}'><span ng-bind='post.user.name'></span></a>: {{post.text}}</p>
+  <div ng-repeat='comment in post.comments'>
+    <p><a href='/#!/user/{{comment.user._id}}'><span ng-bind='comment.user.name'></span></a><span ng-bind='": "+comment.text'></span></p>
+  </div>
+  <form ng-submit='TC.createComment(post)'>
+    <textarea style='margin-left:30px;' ng-model="comment[post._id]" rows="3" cols="80"></textarea>
+    <input type="submit" value="Comment">
+  </form>
+</div>
